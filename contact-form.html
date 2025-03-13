@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أرسل رسالة - EslamLinux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            direction: rtl;
+            text-align: right;
+        }
+        nav {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: #00cc99;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        nav a i {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 80px auto 50px auto;
+            background: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #00cc99;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 i {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .contact-form {
+            margin-top: 20px;
+        }
+        .contact-form label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #00cc99;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #00cc99;
+            border-radius: 5px;
+            background: #333;
+            color: #fff;
+            font-size: 1em;
+        }
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        .captcha {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .captcha span {
+            font-size: 1.2em;
+            color: #00cc99;
+            margin-right: 10px;
+        }
+        .captcha input {
+            width: 100px;
+            display: inline-block;
+        }
+        .contact-form button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00cc99;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+        }
+        .contact-form button:hover {
+            background: #fff;
+            color: #00cc99;
+        }
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+        footer {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9em;
+            border-top: 1px solid #00cc99;
+        }
+        footer a {
+            color: #00cc99;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 70px 20px 20px 20px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h1 i {
+                font-size: 1em;
+            }
+            p {
+                font-size: 1em;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9em;
+            }
+            nav a i {
+                margin-left: 5px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html#home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="index.html#about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="index.html#projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="index.html#contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="blog.html"><i class="fas fa-blog"></i> مدونتي</a>
+    </nav>
+    <div class="container">
+        <h1><i class="fas fa-envelope"></i> أرسل رسالة</h1>
+        <p>استخدم النموذج أدناه لمراسلتي مباشرة! أتطلع إلى سماع أفكارك، اقتراحاتك، أو أي استفسارات حول البرمجة والتقنية.</p>
+        <form class="contact-form" action="send_email.php" method="POST" onsubmit="return validateCaptcha()">
+            <label for="name">الاسم:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">البريد الإلكتروني:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">الرسالة:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <div class="captcha">
+                <span id="captcha-text"></span>
+                <input type="text" id="captcha-input" name="captcha" required placeholder="أدخل الرقم">
+            </div>
+            
+            <button type="submit">إرسال</button>
+        </form>
+        <div class="message" id="message"></div>
+    </div>
+    <footer>
+        <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
+    </footer>
+
+    <script>
+        // Simple CAPTCHA generation
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10);
+            const num2 = Math.floor(Math.random() * 10);
+            const result = num1 + num2;
+            document.getElementById('captcha-text').textContent = `${num1} + ${num2} = `;
+            return result;
+        }
+
+        let captchaResult = generateCaptcha();
+
+        function validateCaptcha() {
+            const userInput = parseInt(document.getElementById('captcha-input').value);
+            const messageDiv = document.getElementById('message');
+            if (userInput === captchaResult) {
+                return true; // Allow form submission
+            } else {
+                messageDiv.textContent = "خطأ في التحقق! تأكد من إجابتك.";
+                messageDiv.style.color = "#ff5555";
+                captchaResult = generateCaptcha(); // Generate new CAPTCHA
+                document.getElementById('captcha-input').value = '';
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

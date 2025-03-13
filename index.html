@@ -1,193 +1,344 @@
-
-    
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
-    <title>Eslam Linux</title>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف EslamLinux الشخصي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-
-      body {
-        background: #232526;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-      }
-
-        .container {
-          width: 100%;
-          height: 100%;
-          padding-right: 15px;
-          padding-left: 15px;
-          margin-right: auto;
-          margin-left: auto;
+        /* نفس الـ CSS السابق بدون تغيير */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            direction: rtl;
+            text-align: right;
         }
-
-        .image {
-          background-image: url("https://pbs.twimg.com/profile_images/1867275235218571264/fPip4Exq_400x400.jpg");
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center; 
-          width: 200px;
-          height: 200px;
-          border-radius: 50%;
-          margin: 0 auto;
-          border: 5px solid #fdf5e6;
-        }
-
-        a {
-          font-size: large;
-        }
-
-        .w3-border {
-          border: 3px solid #ccc !important;
-        }
-
-        .links-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .links-container a {
-          width: 100%;
-          color: #414345 !important;
-          transition: 0.2s;
-        }
-
-        .links-container a:hover {
-          opacity: 1;
-        }
-
-        .profession {
-          margin-top: 15px !important;
-        }
-
-        .profession span {
-          font-size: 14px;
-        }
-
-        .icons {
-          display: flex;
-          justify-content: center;
-          gap: 50px;
-        }
-        
-        
-
-        .icons a {
-          text-decoration: none;
-        }
-
-        .icons a svg {
-          fill: #fdf5e6 !important;
-          transform: scale(2);
-        }
-
-        .border {
-          border: 3px ridge #fdf5e6;
-        }
-
-        .contact {
-          text-align: center;
-          color: #fdf5e6;
-        }
-
-        .contact .info {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 15px;
-        }
-
-        .contact .info span {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-        }
-
-        .bio {
-          font-size: 11px;
-          text-align: center;
-        }
-
-        @media screen and (min-width: 768px) {
-          .link {
+        nav {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
             width: 100%;
-          }
-
-          a {
-            font-size: x-large;
-          }
-
+            top: 0;
+            z-index: 1000;
         }
-        @media screen and (min-width: 576px) {
-          .container {
-            max-width: 540px;
-          }
-
-          .profession span {
-            font-size: 24px;
-          }
-          
-          .bio {
-            font-size: 15px;
-          }
-
+        nav a {
+            color: #00cc99;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
         }
-
+        nav a i {
+            margin-left: 8px;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 80px auto 50px auto;
+            background: #2b2b2b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+            border: 3px solid #00cc99;
+        }
+        h1 {
+            text-align: center;
+            color: #00cc99;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 i {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        p {
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .tech-tips, .projects, .contact {
+            background: #333;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .tech-tips h2, .projects h2, .contact h2 {
+            color: #00cc99;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+        }
+        .tech-tips h2 i, .projects h2 i, .contact h2 i {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+        .social-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .social-links a {
+            margin: 0 15px;
+            color: #00cc99;
+            font-size: 1.5em;
+        }
+        .social-links a:hover {
+            color: #fff;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00cc99;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #fff;
+            color: #00cc99;
+        }
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+        .carousel-inner {
+            display: flex;
+            width: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-inner img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .carousel-controls button {
+            background: rgba(0, 204, 153, 0.7);
+            border: 2px solid #00cc99;
+            color: #fff;
+            font-size: 1.2em;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .carousel-controls button:hover {
+            background: #00cc99;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .carousel-thumbnails {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .carousel-thumbnails img {
+            width: 80px;
+            height: 50px;
+            margin: 0 5px;
+            opacity: 0.6;
+            cursor: pointer;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+        .carousel-thumbnails img.active {
+            opacity: 1;
+            border-color: #00cc99;
+        }
+        footer {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9em;
+            border-top: 1px solid #00cc99;
+        }
+        footer a {
+            color: #00cc99;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 70px 20px 20px 20px;
+                padding: 15px;
+            }
+            .profile-img {
+                width: 100px;
+                height: 100px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h1 i {
+                font-size: 1em;
+            }
+            p, .tech-tips h2, .projects h2, .contact h2 {
+                font-size: 1em;
+            }
+            .tech-tips h2 i, .projects h2 i, .contact h2 i {
+                font-size: 1em;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 0.9em;
+            }
+            nav a i {
+                margin-left: 5px;
+                font-size: 1em;
+            }
+            .carousel-inner img {
+                height: 200px;
+            }
+            .carousel-thumbnails img {
+                width: 60px;
+                height: 40px;
+            }
+            .carousel-controls button {
+                width: 40px;
+                height: 40px;
+                font-size: 1em;
+            }
+        }
     </style>
-    <script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
-  </head>
-  <body>
-    <!-- Content container -->
-    <div class="container">
-
-      <!-- Image and name container -->
-      <div class="w3-margin-top" style="text-align: center">
-        <div class="image w3-round"></div>
-        <p class="profession"><span class="w3-padding w3-margin" style="font-size: 36px ; font-weight: bolder; color: #fdf5e6">Eslam <span style="font-size: 36px ; color: #ffcc66">Linux</span></span></p>
-        <p class="bio"><span class="w3-padding w3-margin" style="font-size: 17px ; font-weight: bolder; color: #fdf5e6">Cyber-security intern & Linux lover </span></p><br>
-      </div>
-
-      <!-- Links section 1 -->
-      <div class="links-container">
-        <a href="https://www.youtube.com/@EslamLinux" class="w3-button w3-sand w3-hover-pale-green link border" target="_blank">My Channel</a>
-        <a href="https://github.com/Eslamlinux?tab=projects" class="w3-button w3-sand w3-hover-pale-green link border" target="_blank">My projects</a>
-        <a href="https://mylearning-diary.blogspot.com/" class="w3-button w3-sand w3-hover-pale-green link border" target="_blank">My blog</a>
-      </div>
-
-      <br> 
-      <br> 
-      <!-- Links section 2 -->
-      <div class="icons w3-padding">
-     
-        <a href="https://x.com/EslamLinux" target="_blank">
-          <i data-feather="x"></i>
-        </a>
-      
-        <a href="https://github.com/Eslamlinux" target="_blank">
-          <i data-feather="github"></i>
-        </a>
-      </div><br>
-      <center>
-      <a href="https://app.daily.dev/eslamlinux"><img src="https://api.daily.dev/devcards/v2/wucKjTUl8caKw1KQ1oRmL.png?r=57p&type=default" width="356" alt="Eslam's Dev Card"/></a>
-      </center>
-       
-        <div class="contact">
-          <p class=""><span class="w3-padding w3-margin" style="font-weight: bolder; color: #fdf5e6">FIND US</span></p>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d172153.72220933143!2d-122.50460482508227!3d47.60859697728761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490102c93e83355%3A0x102565466944d59a!2sSeattle%2C%20WA%2C%20USA!5e0!3m2!1sen!2seg!4v1734965011042!5m2!1sen!2seg" width="100%" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+</head>
+<body>
+    <nav>
+        <a href="#home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="#about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="#projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="blog.html"><i class="fas fa-blog"></i> مدونتي</a>
+    </nav>
+    <div class="container" id="home">
+        <h1><i class="fas fa-home"></i> EslamLinux</h1>
+        <img src="00.jpg" alt="صورة EslamLinux" class="profile-img">
+        <p>أنا مبرمج مبتدئ أسجل رحلتي في تعلم C++. أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.</p>
+        <p>البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً.</p>
+        <div class="carousel">
+            <div class="carousel-inner">
+                  <img src="01.jpg" alt="صورة 1">
+                <img src="02.jpg" alt="صورة 2">
+                <img src="03.jpg" alt="صورة 3">
+            </div>
+            <div class="carousel-controls">
+                <button id="prev"><i class="fas fa-arrow-right"></i></button>
+                <button id="next"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="carousel-thumbnails">
+              <img src="01.jpg" alt="صورة 1" class="thumbnail active">
+                <img src="02.jpg" alt="صورة 2" class="thumbnail">
+                <img src="03.jpg" alt="صورة 3" class="thumbnail">
+            </div>
         </div>
-     
-
+        <div class="social-links">
+            <a href="https://twitter.com/EslamLinux" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
     </div>
-    <script>
-      feather.replace()
-    </script>
-  </body>  
-</html>
+    <div class="container" id="about">
+        <div class="tech-tips">
+            <h2><i class="fas fa-lightbulb"></i> نصائح تقنية</h2>
+            <p>- متصفح Brave رائع للخصوصية 🕵️‍♂️<br>- كرهت تطبيقات Windows الخلفية المزعجة 😡</p>
+            <p>في عالم التقنية، الخصوصية أصبحت عملة نادرة. اختيار الأدوات المناسبة مثل المتصفحات المركزة على الحماية يمكن أن يغير تجربتك اليومية على الإنترنت.</p>
+            <a href="#" class="btn">اقرأ المزيد</a>
+        </div>
+    </div>
+    <div class="container" id="projects">
+        <div class="projects">
+            <h2><i class="fas fa-code"></i> مشاريعي</h2>
+            <p>بعض المشاريع التي أعمل عليها باستخدام C++:<br>- مشروع 1: وصف مختصر.<br>- مشروع 2: وصف مختصر.</p>
+            <p>لغة C++ تمنحك القوة للتحكم في الأداء، لكنها تتطلب صبراً ودقة. كل مشروع هو تحدٍ جديد لتحسين مهاراتي وفهم أعمق للبرمجة منخفضة المستوى.</p>
+            <a href="#" class="btn">استعرض المشاريع</a>
+        </div>
+    </div>
+    <div class="container" id="contact">
+        <div class="contact">
+            <h2><i class="fas fa-phone"></i> اتصل بي</h2>
+            <p>يمكنك التواصل معي عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي!</p>
+            <p>التعاون في عالم التقنية هو مفتاح النجاح. إذا كنت مهتماً بمناقشة فكرة أو مشروع، لا تتردد في التواصل!</p>
+            <a href="contact-form.html" class="btn">أرسل رسالة</a>
+        </div>
+    </div>
+    <footer>
+        <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
+    </footer>
 
+    <script>
+        const carouselInner = document.querySelector('.carousel-inner');
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let index = 0;
+        const totalImages = thumbnails.length;
+
+        function updateCarousel() {
+            carouselInner.style.transform = `translateX(-${index * 100}%)`;
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('active', i === index);
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            index = (index - 1 + totalImages) % totalImages;
+            updateCarousel();
+        });
+
+        thumbnails.forEach((thumb, i) => {
+            thumb.addEventListener('click', () => {
+                index = i;
+                updateCarousel();
+            });
+        });
+
+        setInterval(() => {
+            index = (index + 1) % totalImages;
+            updateCarousel();
+        }, 3000);
+    </script>
+</body>
+</html>
