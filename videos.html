@@ -174,24 +174,26 @@
         <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
     </footer>
 
-    <script>
-        const backendUrl = 'https://youtube-backend-fjj06ism3-eslams-projects-edd15544.vercel.app/api/videos';
+   <script>
+    const backendUrl = 'https://youtube-backend-fjj06ism3-eslams-projects-edd15544.vercel.app/api/videos';
 
-        fetch(backendUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const videoList = document.getElementById('video-list');
-                if (data && data.length > 0) {
-                    data.forEach(item => {
-                        const videoId = item.snippet.resourceId.videoId;
-                        const videoTitle = item.snippet.title;
-                        const videoThumbnail = item.snippet.thumbnails.medium.url;
+    fetch(backendUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Received data:', data); // لتسجيل البيانات في وحدة التحكم
+            const videoList = document.getElementById('video-list');
+            if (Array.isArray(data) && data.length > 0) {
+                data.forEach(item => {
+                    const videoId = item.snippet?.resourceId?.videoId;
+                    const videoTitle = item.snippet?.title;
+                    const videoThumbnail = item.snippet?.thumbnails?.medium?.url;
 
+                    if (videoId && videoTitle && videoThumbnail) {
                         const videoItem = document.createElement('div');
                         videoItem.classList.add('video-item');
                         videoItem.innerHTML = `
@@ -201,16 +203,19 @@
                             </a>
                         `;
                         videoList.appendChild(videoItem);
-                    });
-                } else {
-                    videoList.innerHTML = '<p>لا توجد فيديوهات للعرض حاليًا.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('حدث خطأ أثناء جلب الفيديوهات:', error);
-                const videoList = document.getElementById('video-list');
-                videoList.innerHTML = '<p>عذرًا، حدث خطأ أثناء جلب الفيديوهات. تأكد من الاتصال بالخادوم أو حاول لاحقًا.</p>';
-            });
-    </script>
+                    } else {
+                        console.warn('Invalid video data:', item);
+                    }
+                });
+            } else {
+                videoList.innerHTML = '<p>لا توجد فيديوهات للعرض حاليًا.</p>';
+            }
+        })
+        .catch(error => {
+            console.error('Error details:', error);
+            const videoList = document.getElementById('video-list');
+            videoList.innerHTML = `<p>عذرًا، حدث خطأ أثناء جلب الفيديوهات: ${error.message}</p>`;
+        });
+</script>
 </body>
 </html>
