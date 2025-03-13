@@ -165,57 +165,64 @@
     <div class="container">
         <h1><i class="fab fa-youtube"></i> أحدث فيديوهات EslamLinux</h1>
         <div class="videos-section">
-            <h2><i class="fab fa-youtube"></i> فيديوهات قناتي</h2>
-            <div id="video-list"></div>
-        </div>
-    </div>
+    <h2><i class="fab fa-youtube"></i> فيديوهات قناتي</h2>
+    <button id="refresh-videos" style="background: #00cc99; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-bottom: 20px;">
+        <i class="fas fa-sync-alt"></i> تحديث الفيديوهات
+    </button>
+    <div id="video-list"></div>
+</div>
 
-    <footer>
-        <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
-    </footer>
+<script>
+    const backendUrl = 'https://youtube-backend-fjj06ism3-eslams-projects-edd15544.vercel.app/proxy/videos';
 
-   <script>
-    const backendUrl = 'https://youtube-backend-fjj06ism3-eslams-projects-edd15544.vercel.app/api/videos';
+    function fetchVideos() {
+        const videoList = document.getElementById('video-list');
+        videoList.innerHTML = '<p>جارٍ التحميل...</p>';
 
-    fetch(backendUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Received data:', data); // لتسجيل البيانات في وحدة التحكم
-            const videoList = document.getElementById('video-list');
-            if (Array.isArray(data) && data.length > 0) {
-                data.forEach(item => {
-                    const videoId = item.snippet?.resourceId?.videoId;
-                    const videoTitle = item.snippet?.title;
-                    const videoThumbnail = item.snippet?.thumbnails?.medium?.url;
+        fetch(backendUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Received data:', data);
+                videoList.innerHTML = '';
+                if (Array.isArray(data) && data.length > 0) {
+                    data.forEach(item => {
+                        const videoId = item.snippet?.resourceId?.videoId;
+                        const videoTitle = item.snippet?.title;
+                        const videoThumbnail = item.snippet?.thumbnails?.medium?.url;
 
-                    if (videoId && videoTitle && videoThumbnail) {
-                        const videoItem = document.createElement('div');
-                        videoItem.classList.add('video-item');
-                        videoItem.innerHTML = `
-                            <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
-                                <img src="${videoThumbnail}" alt="${videoTitle}">
-                                <h3>${videoTitle}</h3>
-                            </a>
-                        `;
-                        videoList.appendChild(videoItem);
-                    } else {
-                        console.warn('Invalid video data:', item);
-                    }
-                });
-            } else {
-                videoList.innerHTML = '<p>لا توجد فيديوهات للعرض حاليًا.</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error details:', error);
-            const videoList = document.getElementById('video-list');
-            videoList.innerHTML = `<p>عذرًا، حدث خطأ أثناء جلب الفيديوهات: ${error.message}</p>`;
-        });
+                        if (videoId && videoTitle && videoThumbnail) {
+                            const videoItem = document.createElement('div');
+                            videoItem.classList.add('video-item');
+                            videoItem.innerHTML = `
+                                <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+                                    <img src="${videoThumbnail}" alt="${videoTitle}">
+                                    <h3>${videoTitle}</h3>
+                                    <p style="color: #ccc; font-size: 0.9em;">نُشر في: ${new Date(item.snippet.publishedAt).toLocaleDateString('ar-EG')}</p>
+                                </a>
+                            `;
+                            videoList.appendChild(videoItem);
+                        } else {
+                            console.warn('Invalid video data:', item);
+                        }
+                    });
+                } else {
+                    videoList.innerHTML = '<p>لا توجد فيديوهات للعرض حاليًا.</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error details:', error);
+                videoList.innerHTML = `<p>عذرًا، حدث خطأ أثناء جلب الفيديوهات: ${error.message}</p>`;
+            });
+    }
+
+    fetchVideos();
+    document.getElementById('refresh-videos').addEventListener('click', fetchVideos);
 </script>
+
 </body>
 </html>
