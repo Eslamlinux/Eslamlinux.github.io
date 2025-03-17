@@ -3,17 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ملف EslamLinux الشخصي</title>
+    <title id="page-title">ملف EslamLinux الشخصي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background: url('backg.jpeg') no-repeat center center fixed; /* استخدام الصورة المحلية */
+            background-size: cover;
             color: #fff;
-            direction: rtl;
-            text-align: right;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* لمنع التمرير الأفقي */
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.4); /* الشفافية لتظهر الخلفية أكثر */
+            z-index: -1;
         }
         nav {
             background: #2b2b2b;
@@ -23,10 +37,15 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         nav a {
             color: #00cc99;
-            margin: 0 20px;
+            margin: 0 10px;
             text-decoration: none;
             font-weight: bold;
             display: inline-flex;
@@ -34,19 +53,41 @@
             transition: color 0.3s ease;
         }
         nav a i {
-            margin-left: 8px;
             font-size: 1.1em;
         }
         nav a:hover {
             color: #fff;
         }
+        .language-toggle {
+            background: none;
+            border: none;
+            color: #00cc99;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        .language-toggle:hover {
+            color: #fff;
+        }
+        .language-toggle .flag-icon {
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+        }
         .container {
             max-width: 900px;
-            margin: 80px auto 50px auto;
-            background: #2b2b2b;
+            margin: 40px auto;
+            background: rgba(43, 43, 43, 0.6); /* خلفية شبه شفافة */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            transition: margin 0.3s ease;
+        }
+        #home {
+            margin-top: 80px; /* زيادة الهامش العلوي لفصل البلوك عن الناف بار */
         }
         .profile-img {
             width: 150px;
@@ -65,7 +106,6 @@
             align-items: center;
         }
         h1 i {
-            margin-left: 10px;
             font-size: 1.2em;
         }
         p {
@@ -74,10 +114,11 @@
             font-size: 1.1em;
         }
         .tech-tips, .projects, .contact {
-            background: #333;
+            background: none; /* بدون خلفية إضافية للأقسام الداخلية */
             padding: 15px;
             border-radius: 5px;
             margin-top: 20px;
+            min-height: 150px; /* ضمان ارتفاع أدنى متساوٍ لجميع البلوكات */
         }
         .tech-tips h2, .projects h2, .contact h2 {
             color: #00cc99;
@@ -85,16 +126,12 @@
             display: flex;
             align-items: center;
         }
-        .tech-tips h2 i, .projects h2 i, .contact h2 i {
-            margin-left: 10px;
-            font-size: 1.2em;
-        }
         .social-links {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
         }
         .social-links a {
-            margin: 0 15px;
+            margin: 0 10px;
             color: #00cc99;
             font-size: 1.5em;
         }
@@ -200,6 +237,7 @@
             color: #ccc;
             font-size: 0.9em;
             border-top: 1px solid #00cc99;
+            margin-top: 40px;
         }
         footer a {
             color: #00cc99;
@@ -208,67 +246,57 @@
         footer a:hover {
             color: #fff;
         }
+        /* ضبط اتجاه الأيقونات بناءً على اللغة */
+        [dir="rtl"] nav a i { margin-left: 8px; margin-right: 0; }
+        [dir="ltr"] nav a i { margin-right: 8px; margin-left: 0; }
+        [dir="rtl"] h1 i, [dir="rtl"] .tech-tips h2 i, [dir="rtl"] .projects h2 i, [dir="rtl"] .contact h2 i {
+            margin-left: 10px; margin-right: 0;
+        }
+        [dir="ltr"] h1 i, [dir="ltr"] .tech-tips h2 i, [dir="ltr"] .projects h2 i, [dir="ltr"] .contact h2 i {
+            margin-right: 10px; margin-left: 0;
+        }
+        [dir="ltr"] .carousel-controls #prev i { transform: rotate(180deg); }
+        [dir="ltr"] .carousel-controls #next i { transform: rotate(180deg); }
         @media (max-width: 600px) {
-            .container {
-                margin: 70px 20px 20px 20px;
-                padding: 15px;
-            }
-            .profile-img {
-                width: 100px;
-                height: 100px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            h1 i {
-                font-size: 1em;
-            }
-            p, .tech-tips h2, .projects h2, .contact h2 {
-                font-size: 1em;
-            }
-            .tech-tips h2 i, .projects h2 i, .contact h2 i {
-                font-size: 1em;
-            }
-            nav a {
-                margin: 0 10px;
-                font-size: 0.9em;
-            }
-            nav a i {
-                margin-left: 5px;
-                font-size: 1em;
-            }
-            .carousel-inner {
-                height: 200px;
-            }
-            .carousel-thumbnails img {
-                width: 60px;
-                height: 40px;
-            }
-            .carousel-controls button {
-                width: 40px;
-                height: 40px;
-                font-size: 1em;
-            }
+            .container { margin: 20px auto; padding: 15px; }
+            #home { margin-top: 60px; } /* تقليل الهامش العلوي للشاشات الصغيرة */
+            .profile-img { width: 100px; height: 100px; }
+            h1 { font-size: 1.5em; }
+            h1 i { font-size: 1em; }
+            p, .tech-tips h2, .projects h2, .contact h2 { font-size: 1em; }
+            .tech-tips h2 i, .projects h2 i, .contact h2 i { font-size: 1em; }
+            nav { padding: 10px; }
+            nav a { margin: 0 5px; font-size: 0.9em; }
+            nav a i { font-size: 1em; }
+            .carousel-inner { height: 200px; }
+            .carousel-thumbnails img { width: 60px; height: 40px; }
+            .carousel-controls button { width: 40px; height: 40px; font-size: 1em; }
+            .social-links a { margin: 0 5px; font-size: 1.2em; }
+            .tech-tips, .projects, .contact { min-height: 100px; } /* ضبط الارتفاع للشاشات الصغيرة */
         }
     </style>
 </head>
-<body>
+<body dir="rtl">
     <nav>
-        <a href="#home"><i class="fas fa-home"></i> الرئيسية</a>
-        <a href="#about"><i class="fas fa-user"></i> نبذة عني</a>
-        <a href="#projects"><i class="fas fa-tools"></i> مشاريعي</a>
-        <a href="blog.html"><i class="fas fa-blog"></i> مدونتي</a>
-        <a href="videos.html"><i class="fab fa-youtube"></i> فيديوهاتي</a>
-        <a href="#contact"><i class="fas fa-envelope"></i> اتصل بي</a>
-               <a href="https://twitter.com/EslamLinux" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Eslamlinux" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#home" data-lang="home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="#about" data-lang="about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="#projects" data-lang="projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="blog.html" data-lang="blog"><i class="fas fa-blog"></i> مدونتي</a>
+        <a href="videos.html" data-lang="videos"><i class="fab fa-youtube"></i> فيديوهاتي</a>
+        <a href="#contact" data-lang="contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github"><i class="fab fa-github"></i></a>
+        <button class="language-toggle" onclick="toggleLanguage()">
+            English <span class="flag-icon flag-icon-us"></span>
+        </button>
     </nav>
+
     <div class="container" id="home">
-        <h1><i class="fas fa-home"></i> EslamLinux</h1>
+        <h1><i class="fas fa-home"></i> <span data-lang="welcome-title">EslamLinux</span></h1>
         <img src="00.jpg" alt="صورة EslamLinux" class="profile-img">
-        <p>أنا مبرمج مبتدئ أسجل رحلتي في تعلم C++ جنبا إلي جانب دراستي للامن السيبراني . أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.</p>
-        <p>البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً</p>
+        <p data-lang="intro-text1">أنا مبرمج مبتدئ أسجل رحلتي في تعلم C++ جنبا إلي جانب دراستي للامن السيبراني. أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.</p>
+        <p data-lang="intro-text2">البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً.</p>
         <div class="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -297,49 +325,168 @@
             <a href="https://github.com/Eslamlinux" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </div>
+
     <div class="container" id="TechAdvice">
         <div class="tech-tips">
-            <h2><i class="fas fa-lightbulb"></i> نصائح تقنية</h2>
-            <p>- متصفح Brave رائع للخصوصية 🕵️‍♂️<br>- كرهت تطبيقات Windows الخلفية المزعجة 😡</p>
-            <p>في عالم التقنية، الخصوصية أصبحت عملة نادرة. اختيار الأدوات المناسبة مثل المتصفحات المركزة على الحماية يمكن أن يغير تجربتك اليومية على الإنترنت.</p>
-            <a href="#" class="btn">اقرأ المزيد</a>
+            <h2><i class="fas fa-lightbulb"></i> <span data-lang="tech-tips-title">نصائح تقنية</span></h2>
+            <p data-lang="tech-tips-text1">- متصفح Brave رائع للخصوصية 🕵️‍♂️<br>- كرهت تطبيقات Windows الخلفية المزعجة 😡</p>
+            <p data-lang="tech-tips-text2">في عالم التقنية، الخصوصية أصبحت عملة نادرة. اختيار الأدوات المناسبة مثل المتصفحات المركزة على الحماية يمكن أن يغير تجربتك اليومية على الإنترنت.</p>
+            <a href="#" class="btn" data-lang="read-more">اقرأ المزيد</a>
         </div>
     </div>
 
-        <div class="container" id="about">
+    <div class="container" id="about">
         <div class="tech-tips">
-            <h2><i class="fas fa-lightbulb"></i> نبذة عني</h2>
-            <p> اسمي إسلام مبرمج مبتدئ والي جانب دراستي للمستوي المتوسط في البرمجة أدرس مبادئ الأمن السيبراني واختبار الاختراق</p>
-            <p>ايضا ادرس الشبكات وانظمة التشغيل واساسيات الويب لان كل هذا يصب في نفس المسار الذي ادرسة وهو الأمن السيبراني فهو المسار الذي اسعي للاستمرار فيه بإذن الله</p>
-               <p>. أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية</p>
-                    <p>كل شئ من صنع الانسان ليس كامل فألانسان نفسه غير كامل الصفات والكمال لله وحده ، لذلك فأي شئ من صنع الانسان قابل للاختراق لذلك يجب علي الجميع تعلم كيف يحموا مشاريعهم ومؤسستهم من الاختراق</p>
-        <p>البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً</p>
-            <a href="#" class="btn">اقرأ المزيد</a>
+            <h2><i class="fas fa-lightbulb"></i> <span data-lang="about-title">نبذة عني</span></h2>
+            <p data-lang="about-text1">اسمي إسلام مبرمج مبتدئ والي جانب دراستي للمستوي المتوسط في البرمجة أدرس مبادئ الأمن السيبراني واختبار الاختراق.</p>
+            <p data-lang="about-text2">ايضا ادرس الشبكات وانظمة التشغيل واساسيات الويب لان كل هذا يصب في نفس المسار الذي ادرسة وهو الأمن السيبراني فهو المسار الذي اسعي للاستمرار فيه بإذن الله.</p>
+            <p data-lang="about-text3">أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.</p>
+            <p data-lang="about-text4">كل شئ من صنع الانسان ليس كامل فألانسان نفسه غير كامل الصفات والكمال لله وحده، لذلك فأي شئ من صنع الانسان قابل للاختراق لذلك يجب علي الجميع تعلم كيف يحموا مشاريعهم ومؤسستهم من الاختراق.</p>
+            <p data-lang="about-text5">البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً.</p>
+            <a href="#" class="btn" data-lang="read-more">اقرأ المزيد</a>
         </div>
     </div>
 
-    
     <div class="container" id="projects">
         <div class="projects">
-            <h2><i class="fas fa-code"></i> مشاريعي</h2>
-            <p>بعض المشاريع التي أعمل عليها باستخدام C++:<br>- مشروع 1: وصف مختصر.<br>- مشروع 2: وصف مختصر.</p>
-            <p>لغة C++ تمنحك القوة للتحكم في الأداء، لكنها تتطلب صبراً ودقة. كل مشروع هو تحدٍ جديد لتحسين مهاراتي وفهم أعمق للبرمجة منخفضة المستوى.</p>
-            <a href="#" class="btn">استعرض المشاريع</a>
+            <h2><i class="fas fa-code"></i> <span data-lang="projects-title">مشاريعي</span></h2>
+            <p data-lang="projects-text1">بعض المشاريع التي أعمل عليها باستخدام C++:<br>- مشروع 1: وصف مختصر.<br>- مشروع 2: وصف مختصر.</p>
+            <p data-lang="projects-text2">لغة C++ تمنحك القوة للتحكم في الأداء، لكنها تتطلب صبراً ودقة. كل مشروع هو تحدٍ جديد لتحسين مهاراتي وفهم أعمق للبرمجة منخفضة المستوى.</p>
+            <a href="#" class="btn" data-lang="view-projects">استعرض المشاريع</a>
         </div>
     </div>
+
     <div class="container" id="contact">
         <div class="contact">
-            <h2><i class="fas fa-phone"></i> اتصل بي</h2>
-            <p>يمكنك التواصل معي عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي!</p>
-            <p>التعاون في عالم التقنية هو مفتاح النجاح. إذا كنت مهتماً بمناقشة فكرة أو مشروع، لا تتردد في التواصل!</p>
-            <a href="contact-form.html" class="btn">أرسل رسالة</a>
+            <h2><i class="fas fa-phone"></i> <span data-lang="contact-title">اتصل بي</span></h2>
+            <p data-lang="contact-text1">يمكنك التواصل معي عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي!</p>
+            <p data-lang="contact-text2">التعاون في عالم التقنية هو مفتاح النجاح. إذا كنت مهتماً بمناقشة فكرة أو مشروع، لا تتردد في التواصل!</p>
+            <a href="contact-form.html" class="btn" data-lang="send-message">أرسل رسالة</a>
         </div>
     </div>
+
     <footer>
-        <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
+        <p data-lang="footer">جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
     </footer>
 
     <script>
+        const translations = {
+            ar: {
+                "page-title": "ملف EslamLinux الشخصي",
+                "home": "الرئيسية",
+                "about": "نبذة عني",
+                "projects": "مشاريعي",
+                "blog": "مدونتي",
+                "videos": "فيديوهاتي",
+                "contact": "اتصل بي",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "welcome-title": "EslamLinux",
+                "intro-text1": "أنا مبرمج مبتدئ أسجل رحلتي في تعلم C++ جنبا إلي جانب دراستي للامن السيبراني. أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.",
+                "intro-text2": "البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً.",
+                "tech-tips-title": "نصائح تقنية",
+                "tech-tips-text1": "- متصفح Brave رائع للخصوصية 🕵️‍♂️<br>- كرهت تطبيقات Windows الخلفية المزعجة 😡",
+                "tech-tips-text2": "في عالم التقنية، الخصوصية أصبحت عملة نادرة. اختيار الأدوات المناسبة مثل المتصفحات المركزة على الحماية يمكن أن يغير تجربتك اليومية على الإنترنت.",
+                "about-title": "نبذة عني",
+                "about-text1": "اسمي إسلام مبرمج مبتدئ والي جانب دراستي للمستوي المتوسط في البرمجة أدرس مبادئ الأمن السيبراني واختبار الاختراق.",
+                "about-text2": "ايضا ادرس الشبكات وانظمة التشغيل واساسيات الويب لان كل هذا يصب في نفس المسار الذي ادرسة وهو الأمن السيبراني فهو المسار الذي اسعي للاستمرار فيه بإذن الله.",
+                "about-text3": "أؤمن بأن المثابرة عبر تقلبات البرمجة، مع التركيز على المهارات الخالدة، تفتح براعة البرمجة الحقيقية.",
+                "about-text4": "كل شئ من صنع الانسان ليس كامل فألانسان نفسه غير كامل الصفات والكمال لله وحده، لذلك فأي شئ من صنع الانسان قابل للاختراق لذلك يجب علي الجميع تعلم كيف يحموا مشاريعهم ومؤسستهم من الاختراق.",
+                "about-text5": "البرمجة ليست مجرد كتابة أكواد، بل هي فن حل المشكلات. كل سطر كود هو خطوة نحو بناء شيء عظيم، سواء كان تطبيقاً بسيطاً أو نظاماً معقداً.",
+                "projects-title": "مشاريعي",
+                "projects-text1": "بعض المشاريع التي أعمل عليها باستخدام C++:<br>- مشروع 1: وصف مختصر.<br>- مشروع 2: وصف مختصر.",
+                "projects-text2": "لغة C++ تمنحك القوة للتحكم في الأداء، لكنها تتطلب صبراً ودقة. كل مشروع هو تحدٍ جديد لتحسين مهاراتي وفهم أعمق للبرمجة منخفضة المستوى.",
+                "contact-title": "اتصل بي",
+                "contact-text1": "يمكنك التواصل معي عبر البريد الإلكتروني أو وسائل التواصل الاجتماعي!",
+                "contact-text2": "التعاون في عالم التقنية هو مفتاح النجاح. إذا كنت مهتماً بمناقشة فكرة أو مشروع، لا تتردد في التواصل!",
+                "read-more": "اقرأ المزيد",
+                "view-projects": "استعرض المشاريع",
+                "send-message": "أرسل رسالة",
+                "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            },
+            en: {
+                "page-title": "EslamLinux Profile",
+                "home": "Home",
+                "about": "About Me",
+                "projects": "My Projects",
+                "blog": "My Blog",
+                "videos": "My Videos",
+                "contact": "Contact Me",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "welcome-title": "EslamLinux",
+                "intro-text1": "I am a beginner programmer documenting my journey in learning C++ alongside my studies in cybersecurity. I believe that perseverance through the ups and downs of programming, with a focus on timeless skills, unlocks true programming mastery.",
+                "intro-text2": "Programming is not just about writing code; it is the art of problem-solving. Every line of code is a step toward building something great, whether it's a simple app or a complex system.",
+                "tech-tips-title": "Tech Tips",
+                "tech-tips-text1": "- Brave browser is great for privacy 🕵️‍♂️<br>- I hated the annoying background Windows apps 😡",
+                "tech-tips-text2": "In the tech world, privacy has become a rare commodity. Choosing the right tools, like privacy-focused browsers, can transform your daily online experience.",
+                "about-title": "About Me",
+                "about-text1": "My name is Eslam, a beginner programmer. Alongside my intermediate programming studies, I am learning the principles of cybersecurity and penetration testing.",
+                "about-text2": "I also study networking, operating systems, and web fundamentals because they all contribute to the same path I am pursuing, which is cybersecurity—the path I aim to continue on, God willing.",
+                "about-text3": "I believe that perseverance through the ups and downs of programming, with a focus on timeless skills, unlocks true programming mastery.",
+                "about-text4": "Everything made by humans is not perfect because humans themselves are not perfect; perfection belongs to God alone. Therefore, anything made by humans is vulnerable to hacking, so everyone must learn how to protect their projects and organizations from breaches.",
+                "about-text5": "Programming is not just about writing code; it is the art of problem-solving. Every line of code is a step toward building something great, whether it's a simple app or a complex system.",
+                "projects-title": "My Projects",
+                "projects-text1": "Some projects I am working on using C++:<br>- Project 1: Brief description.<br>- Project 2: Brief description.",
+                "projects-text2": "The C++ language gives you the power to control performance, but it requires patience and precision. Each project is a new challenge to improve my skills and gain a deeper understanding of low-level programming.",
+                "contact-title": "Contact Me",
+                "contact-text1": "You can reach out to me via email or social media!",
+                "contact-text2": "Collaboration in the tech world is the key to success. If you're interested in discussing an idea or project, feel free to get in touch!",
+                "read-more": "Read More",
+                "view-projects": "View Projects",
+                "send-message": "Send a Message",
+                "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            }
+        };
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute("lang") === "ar" ? "en" : "ar";
+            document.documentElement.setAttribute("lang", currentLang);
+            document.body.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[currentLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[currentLang]["page-title"];
+
+            const toggleButton = document.querySelector(".language-toggle");
+            toggleButton.innerHTML = currentLang === "ar" 
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+
+            localStorage.setItem("language", currentLang);
+        }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "ar";
+            document.documentElement.setAttribute("lang", savedLang);
+            document.body.setAttribute("dir", savedLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[savedLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[savedLang]["page-title"];
+            document.querySelector(".language-toggle").innerHTML = savedLang === "ar"
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+        };
+
         const carouselItems = document.querySelectorAll('.carousel-item');
         const thumbnails = document.querySelectorAll('.thumbnail');
         const prevBtn = document.getElementById('prev');
