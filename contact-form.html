@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أرسل رسالة - EslamLinux</title>
+    <title id="page-title">أرسل رسالة - EslamLinux</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* نفس الـ CSS السابق */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background: url('backg.jpeg') no-repeat center center fixed; /* إضافة الخلفية */
+            background-size: cover;
             color: #fff;
-            direction: rtl;
-            text-align: right;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.4); /* تأثير الشفافية */
+            z-index: -1;
         }
         nav {
             background: #2b2b2b;
@@ -25,10 +38,15 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         nav a {
             color: #00cc99;
-            margin: 0 20px;
+            margin: 0 10px;
             text-decoration: none;
             font-weight: bold;
             display: inline-flex;
@@ -36,19 +54,39 @@
             transition: color 0.3s ease;
         }
         nav a i {
-            margin-left: 8px;
             font-size: 1.1em;
         }
         nav a:hover {
             color: #fff;
         }
+        .language-toggle {
+            background: none;
+            border: none;
+            color: #00cc99;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        .language-toggle:hover {
+            color: #fff;
+        }
+        .language-toggle .flag-icon {
+            margin-left: 5px;
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+        }
         .container {
             max-width: 900px;
-            margin: 80px auto 50px auto;
-            background: #2b2b2b;
+            margin: 80px auto 40px auto;
+            background: rgba(43, 43, 43, 0.6); /* خلفية شبه شفافة */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            transition: margin 0.3s ease;
         }
         h1 {
             text-align: center;
@@ -59,7 +97,6 @@
             align-items: center;
         }
         h1 i {
-            margin-left: 10px;
             font-size: 1.2em;
         }
         p {
@@ -81,7 +118,7 @@
             margin-bottom: 15px;
             border: 1px solid #00cc99;
             border-radius: 5px;
-            background: #333;
+            background: rgba(255, 255, 255, 0.1); /* تحديث لتتناسب مع الشفافية */
             color: #fff;
             font-size: 1em;
         }
@@ -101,6 +138,7 @@
         .captcha input {
             width: 100px;
             display: inline-block;
+            background: rgba(255, 255, 255, 0.1); /* تحديث لتتناسب مع الشفافية */
         }
         .contact-form button {
             display: inline-block;
@@ -111,7 +149,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.1em;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         .contact-form button:hover {
             background: #fff;
@@ -129,6 +167,7 @@
             color: #ccc;
             font-size: 0.9em;
             border-top: 1px solid #00cc99;
+            margin-top: 40px;
         }
         footer a {
             color: #00cc99;
@@ -137,6 +176,11 @@
         footer a:hover {
             color: #fff;
         }
+        /* ضبط اتجاه الأيقونات بناءً على اللغة */
+        [dir="rtl"] nav a i { margin-left: 8px; margin-right: 0; }
+        [dir="ltr"] nav a i { margin-right: 8px; margin-left: 0; }
+        [dir="rtl"] h1 i { margin-left: 10px; margin-right: 0; }
+        [dir="ltr"] h1 i { margin-right: 10px; margin-left: 0; }
         @media (max-width: 600px) {
             .container {
                 margin: 70px 20px 20px 20px;
@@ -152,39 +196,42 @@
                 font-size: 1em;
             }
             nav a {
-                margin: 0 10px;
+                margin: 0 5px;
                 font-size: 0.9em;
             }
             nav a i {
-                margin-left: 5px;
                 font-size: 1em;
             }
         }
     </style>
 </head>
-<body>
+<body dir="rtl">
     <nav>
-          <a href="/links"><i class="fas fa-home"></i> الرئيسية</a>
-        <a href="/links#about"><i class="fas fa-user"></i> نبذة عني</a>
-        <a href="/links#projects"><i class="fas fa-tools"></i> مشاريعي</a>
-        <a href="blog.html"><i class="fas fa-blog"></i> مدونتي</a>
-        <a href="videos.html"><i class="fab fa-youtube"></i> فيديوهاتي</a>
-        <a href="contact-form.html"><i class="fas fa-envelope"></i> اتصل بي</a>
-           <a href="https://twitter.com/EslamLinux" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Eslamlinux" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="index.html" data-lang="home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="index.html#about" data-lang="about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="index.html#projects" data-lang="projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="blog.html" data-lang="blog"><i class="fas fa-blog"></i> مدونتي</a>
+        <a href="videos.html" data-lang="videos"><i class="fab fa-youtube"></i> فيديوهاتي</a>
+        <a href="contact-form.html" data-lang="contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github"><i class="fab fa-github"></i></a>
+        <button class="language-toggle" onclick="toggleLanguage()">
+            English <span class="flag-icon flag-icon-us"></span>
+        </button>
     </nav>
+
     <div class="container">
-        <h1><i class="fas fa-envelope"></i> أرسل رسالة</h1>
-        <p>استخدم النموذج أدناه لمراسلتي مباشرة! أتطلع إلى سماع أفكارك، اقتراحاتك، أو أي استفسارات حول البرمجة والتقنية.</p>
+        <h1><i class="fas fa-envelope"></i> <span data-lang="contact-title">أرسل رسالة</span></h1>
+        <p data-lang="contact-text">استخدم النموذج أدناه لمراسلتي مباشرة! أتطلع إلى سماع أفكارك، اقتراحاتك، أو أي استفسارات حول البرمجة والتقنية.</p>
         <form class="contact-form" id="contactForm" onsubmit="return sendEmail(event)">
-            <label for="name">الاسم:</label>
+            <label for="name" data-lang="name-label">الاسم:</label>
             <input type="text" id="name" name="name" required>
             
-            <label for="email">البريد الإلكتروني:</label>
+            <label for="email" data-lang="email-label">البريد الإلكتروني:</label>
             <input type="email" id="email" name="email" required>
             
-            <label for="message">الرسالة:</label>
+            <label for="message" data-lang="message-label">الرسالة:</label>
             <textarea id="message" name="message" required></textarea>
             
             <div class="captcha">
@@ -192,17 +239,18 @@
                 <input type="text" id="captcha-input" name="captcha" required placeholder="أدخل الرقم">
             </div>
             
-            <button type="submit">إرسال</button>
+            <button type="submit" data-lang="send-button">إرسال</button>
         </form>
         <div class="message" id="message"></div>
     </div>
+
     <footer>
-        <p>جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
+        <p data-lang="footer">جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
     </footer>
 
     <script>
-        // Initialize  with your User 
-        emailjs.init("l4PkPJluTDDIz1dEU"); 
+        // Initialize EmailJS with your User ID
+        emailjs.init("l4PkPJluTDDIz1dEU");
 
         // Generate CAPTCHA
         function generateCaptcha() {
@@ -222,7 +270,7 @@
             const messageDiv = document.getElementById('message');
 
             if (userInput !== captchaResult) {
-                messageDiv.textContent = "خطأ في التحقق! تأكد من إجابتك.";
+                messageDiv.textContent = document.documentElement.lang === "ar" ? "خطأ في التحقق! تأكد من إجابتك." : "Verification error! Check your answer.";
                 messageDiv.style.color = "#ff5555";
                 captchaResult = generateCaptcha();
                 document.getElementById('captcha-input').value = '';
@@ -237,17 +285,102 @@
 
             emailjs.send('service_rx8glg8', 'template_w401o5a', templateParams)
                 .then(function(response) {
-                    messageDiv.textContent = "تم إرسال الرسالة بنجاح!";
+                    messageDiv.textContent = document.documentElement.lang === "ar" ? "تم إرسال الرسالة بنجاح!" : "Message sent successfully!";
                     messageDiv.style.color = "#00cc99";
                     document.getElementById('contactForm').reset();
                     captchaResult = generateCaptcha();
                 }, function(error) {
-                    messageDiv.textContent = "فشل في إرسال الرسالة. حاول مرة أخرى.";
+                    messageDiv.textContent = document.documentElement.lang === "ar" ? "فشل في إرسال الرسالة. حاول مرة أخرى." : "Failed to send message. Try again.";
                     messageDiv.style.color = "#ff5555";
                 });
 
             return false;
         }
+
+        // Language translations
+        const translations = {
+            ar: {
+                "page-title": "أرسل رسالة - EslamLinux",
+                "home": "الرئيسية",
+                "about": "نبذة عني",
+                "projects": "مشاريعي",
+                "blog": "مدونتي",
+                "videos": "فيديوهاتي",
+                "contact": "اتصل بي",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "contact-title": "أرسل رسالة",
+                "contact-text": "استخدم النموذج أدناه لمراسلتي مباشرة! أتطلع إلى سماع أفكارك، اقتراحاتك، أو أي استفسارات حول البرمجة والتقنية.",
+                "name-label": "الاسم:",
+                "email-label": "البريد الإلكتروني:",
+                "message-label": "الرسالة:",
+                "send-button": "إرسال",
+                "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            },
+            en: {
+                "page-title": "Send a Message - EslamLinux",
+                "home": "Home",
+                "about": "About Me",
+                "projects": "My Projects",
+                "blog": "My Blog",
+                "videos": "My Videos",
+                "contact": "Contact Me",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "contact-title": "Send a Message",
+                "contact-text": "Use the form below to message me directly! I look forward to hearing your ideas, suggestions, or any inquiries about programming and tech.",
+                "name-label": "Name:",
+                "email-label": "Email:",
+                "message-label": "Message:",
+                "send-button": "Send",
+                "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            }
+        };
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute("lang") === "ar" ? "en" : "ar";
+            document.documentElement.setAttribute("lang", currentLang);
+            document.body.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[currentLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[currentLang]["page-title"];
+            document.querySelector(".language-toggle").innerHTML = currentLang === "ar"
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+            localStorage.setItem("language", currentLang);
+        }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "ar";
+            document.documentElement.setAttribute("lang", savedLang);
+            document.body.setAttribute("dir", savedLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[savedLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[savedLang]["page-title"];
+            document.querySelector(".language-toggle").innerHTML = savedLang === "ar"
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+        };
     </script>
 </body>
 </html>
