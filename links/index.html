@@ -3,43 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- إعادة التوجيه بعد 2 ثانية إلى الرابط الجديد -->
-    <meta http-equiv="refresh" content="2;url=https://eslamlinux.github.io/">
-    <title>إعادة توجيه - EslamLinux</title>
+    <!-- إعادة التوجيه بعد 5 ثوانٍ إلى الصفحة الرئيسية -->
+    <meta http-equiv="refresh" content="5;url=https://eslamlinux.github.io/">
+    <title id="page-title">الصفحة غير موجودة - EslamLinux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
+            background: url('../backg.jpeg') no-repeat center center fixed; /* افتراض أن الصورة في المجلد الرئيسي */
+            background-size: cover;
             color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 26, 26, 0.4);
+            z-index: -1;
+        }
+        nav {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        nav a {
+            color: #00cc99;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        nav a i {
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            color: #fff;
+        }
+        .language-toggle {
+            background: none;
+            border: none;
+            color: #00cc99;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0 10px;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+        .language-toggle:hover {
+            color: #fff;
+        }
+        .language-toggle .flag-icon {
+            margin-left: 5px;
+            margin-right: 6px;
+            width: 16px;
+            height: 16px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 80px auto 40px auto;
+            background: rgba(43, 43, 43, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+            transition: margin 0.3s ease;
             text-align: center;
         }
         h1 {
             color: #00cc99;
             font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 i {
+            font-size: 1.2em;
         }
         p {
             color: #ccc;
-            font-size: 1.2em;
+            line-height: 1.6;
+            font-size: 1.1em;
+            margin: 20px 0;
         }
-        a {
+        .redirect-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .redirect-options a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #00cc99;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .redirect-options a:hover {
+            background: #fff;
+            color: #00cc99;
+        }
+        footer {
+            background: #2b2b2b;
+            padding: 15px;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.9em;
+            border-top: 1px solid #00cc99;
+            margin-top: 40px;
+        }
+        footer a {
             color: #00cc99;
             text-decoration: none;
         }
-        a:hover {
+        footer a:hover {
             color: #fff;
+        }
+        [dir="rtl"] nav a i { margin-left: 8px; margin-right: 0; }
+        [dir="ltr"] nav a i { margin-right: 8px; margin-left: 0; }
+        [dir="rtl"] h1 i { margin-left: 10px; margin-right: 0; }
+        [dir="ltr"] h1 i { margin-right: 10px; margin-left: 0; }
+        @media (max-width: 600px) {
+            .container {
+                margin: 70px 20px 20px 20px;
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            h1 i {
+                font-size: 1em;
+            }
+            p {
+                font-size: 1em;
+            }
+            nav a {
+                margin: 0 5px;
+                font-size: 0.9em;
+            }
+            nav a i {
+                font-size: 1em;
+            }
+            .redirect-options a {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
-<body>
-    <div>
-        <h1>جارٍ إعادة التوجيه...</h1>
-        <p>سيتم توجيهك إلى <a href="https://eslamlinux.github.io/">https://eslamlinux.github.io/</a> خلال ثوانٍ. إذا لم يتم التوجيه، انقر <a href="https://eslamlinux.github.io/">هنا</a>.</p>
+<body dir="rtl">
+    <nav>
+        <a href="https://eslamlinux.github.io/" data-lang="home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="https://eslamlinux.github.io/#about" data-lang="about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="https://eslamlinux.github.io/#projects" data-lang="projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="https://eslamlinux.github.io/blog.html" data-lang="blog"><i class="fas fa-blog"></i> مدونتي</a>
+        <a href="https://eslamlinux.github.io/videos.html" data-lang="videos"><i class="fab fa-youtube"></i> فيديوهاتي</a>
+        <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github"><i class="fab fa-github"></i></a>
+        <button class="language-toggle" onclick="toggleLanguage()">
+            English <span class="flag-icon flag-icon-us"></span>
+        </button>
+    </nav>
+
+    <div class="container">
+        <h1><i class="fas fa-exclamation-triangle"></i> <span data-lang="not-found-title">الصفحة غير موجودة</span></h1>
+        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال 5 ثوانٍ. يمكنك أيضًا اختيار إحدى الصفحات التالية:</p>
+        <div class="redirect-options">
+            <a href="https://eslamlinux.github.io/" data-lang="home">الرئيسية</a>
+            <a href="https://eslamlinux.github.io/blog.html" data-lang="blog">مدونتي</a>
+            <a href="https://eslamlinux.github.io/videos.html" data-lang="videos">فيديوهاتي</a>
+            <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact">اتصل بي</a>
+        </div>
     </div>
+
+    <footer>
+        <p data-lang="footer">جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href="https://twitter.com/EslamLinux">@EslamLinux</a></p>
+    </footer>
+
+    <script>
+        const translations = {
+            ar: {
+                "page-title": "الصفحة غير موجودة - EslamLinux",
+                "home": "الرئيسية",
+                "about": "نبذة عني",
+                "projects": "مشاريعي",
+                "blog": "مدونتي",
+                "videos": "فيديوهاتي",
+                "contact": "اتصل بي",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "not-found-title": "الصفحة غير موجودة",
+                "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال 5 ثوانٍ. يمكنك أيضًا اختيار إحدى الصفحات التالية:",
+                "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            },
+            en: {
+                "page-title": "Page Not Found - EslamLinux",
+                "home": "Home",
+                "about": "About Me",
+                "projects": "My Projects",
+                "blog": "My Blog",
+                "videos": "My Videos",
+                "contact": "Contact Me",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
+                "not-found-title": "Page Not Found",
+                "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in 5 seconds. Alternatively, choose one of the following pages:",
+                "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
+            }
+        };
+
+        function toggleLanguage() {
+            const currentLang = document.documentElement.getAttribute("lang") === "ar" ? "en" : "ar";
+            document.documentElement.setAttribute("lang", currentLang);
+            document.body.setAttribute("dir", currentLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[currentLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[currentLang]["page-title"];
+            document.querySelector(".language-toggle").innerHTML = currentLang === "ar"
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+            localStorage.setItem("language", currentLang);
+        }
+
+        window.onload = function() {
+            const savedLang = localStorage.getItem("language") || "ar";
+            document.documentElement.setAttribute("lang", savedLang);
+            document.body.setAttribute("dir", savedLang === "ar" ? "rtl" : "ltr");
+
+            document.querySelectorAll("[data-lang]").forEach(element => {
+                const key = element.getAttribute("data-lang");
+                const text = translations[savedLang][key];
+                if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.getElementById("page-title").textContent = translations[savedLang]["page-title"];
+            document.querySelector(".language-toggle").innerHTML = savedLang === "ar"
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
+        };
+    </script>
 </body>
 </html>
