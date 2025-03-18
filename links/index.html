@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- إعادة التوجيه بعد 5 ثوانٍ إلى الصفحة الرئيسية -->
-    <meta http-equiv="refresh" content="15;url=https://eslamlinux.github.io/">
     <title id="page-title">الصفحة غير موجودة - EslamLinux</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
@@ -13,7 +11,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: url('../backg.jpeg') no-repeat center center fixed; /* افتراض أن الصورة في المجلد الرئيسي */
+            background: url('../backg.jpeg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
             min-height: 100vh;
@@ -89,6 +87,10 @@
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
             transition: margin 0.3s ease;
             text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         h1 {
             color: #00cc99;
@@ -96,6 +98,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-bottom: 20px;
         }
         h1 i {
             font-size: 1.2em;
@@ -104,27 +107,50 @@
             color: #ccc;
             line-height: 1.6;
             font-size: 1.1em;
-            margin: 20px 0;
+            margin: 0 0 20px;
         }
-        .redirect-options {
+        .circle-map {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .countdown {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: rgba(0, 255, 204, 0.2);
+            border-radius: 50%;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            align-items: center;
+            font-size: 2em;
+            color: #00cc99;
+            font-weight: bold;
         }
-        .redirect-options a {
-            display: inline-block;
-            padding: 10px 20px;
+        .circle-map a {
+            position: absolute;
+            width: 80px;
+            padding: 10px;
             background: #00cc99;
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
+            text-align: center;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        .redirect-options a:hover {
+        .circle-map a:hover {
             background: #fff;
             color: #00cc99;
         }
+        /* ترتيب الروابط في دائرة */
+        .circle-map a:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
+        .circle-map a:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); }
+        .circle-map a:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); }
+        .circle-map a:nth-child(4) { top: 50%; left: 0; transform: translateY(-50%); }
         footer {
             background: #2b2b2b;
             padding: 15px;
@@ -166,8 +192,18 @@
             nav a i {
                 font-size: 1em;
             }
-            .redirect-options a {
-                padding: 8px 15px;
+            .circle-map {
+                width: 200px;
+                height: 200px;
+            }
+            .countdown {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5em;
+            }
+            .circle-map a {
+                width: 60px;
+                padding: 8px;
                 font-size: 0.9em;
             }
         }
@@ -191,8 +227,9 @@
 
     <div class="container">
         <h1><i class="fas fa-exclamation-triangle"></i> <span data-lang="not-found-title">الصفحة غير موجودة</span></h1>
-        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال 5 ثوانٍ. يمكنك أيضًا اختيار إحدى الصفحات التالية:</p>
-        <div class="redirect-options">
+        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">15</span> ثانية.</p>
+        <div class="circle-map">
+            <div class="countdown" id="countdown">15</div>
             <a href="https://eslamlinux.github.io/" data-lang="home">الرئيسية</a>
             <a href="https://eslamlinux.github.io/blog.html" data-lang="blog">مدونتي</a>
             <a href="https://eslamlinux.github.io/videos.html" data-lang="videos">فيديوهاتي</a>
@@ -218,7 +255,7 @@
                 "linkedin": "",
                 "github": "",
                 "not-found-title": "الصفحة غير موجودة",
-                "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال 5 ثوانٍ. يمكنك أيضًا اختيار إحدى الصفحات التالية:",
+                "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id=\"countdown-text\">15</span> ثانية.",
                 "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
             },
             en: {
@@ -233,7 +270,7 @@
                 "linkedin": "",
                 "github": "",
                 "not-found-title": "Page Not Found",
-                "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in 5 seconds. Alternatively, choose one of the following pages:",
+                "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in <span id=\"countdown-text\">15</span> seconds.",
                 "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
             }
         };
@@ -248,6 +285,8 @@
                 const text = translations[currentLang][key];
                 if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else if (element.id === "not-found-text") {
+                    element.innerHTML = text.replace("15", `<span id="countdown-text">${document.getElementById("countdown").textContent}</span>`);
                 } else {
                     element.innerHTML = text;
                 }
@@ -260,6 +299,20 @@
             localStorage.setItem("language", currentLang);
         }
 
+        // عداد تنازلي
+        let timeLeft = 15;
+        const countdownElement = document.getElementById("countdown");
+        const countdownTextElement = document.getElementById("countdown-text");
+        const countdownInterval = setInterval(() => {
+            timeLeft--;
+            countdownElement.textContent = timeLeft;
+            countdownTextElement.textContent = timeLeft;
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                window.location.href = "https://eslamlinux.github.io/";
+            }
+        }, 1000);
+
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "ar";
             document.documentElement.setAttribute("lang", savedLang);
@@ -270,6 +323,8 @@
                 const text = translations[savedLang][key];
                 if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
+                } else if (element.id === "not-found-text") {
+                    element.innerHTML = text.replace("15", `<span id="countdown-text">15</span>`);
                 } else {
                     element.innerHTML = text;
                 }
