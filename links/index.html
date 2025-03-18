@@ -130,23 +130,30 @@
             font-size: 2em;
             color: #00cc99;
             font-weight: bold;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            transition: transform 0.3s ease;
         }
         .circle-map a {
             position: absolute;
-            width: 80px;
-            padding: 10px;
+            width: 60px;
+            height: 60px;
             background: #00cc99;
             color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            text-align: center;
-            transition: background 0.3s ease, color 0.3s ease;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
         }
         .circle-map a:hover {
             background: #fff;
             color: #00cc99;
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(0, 255, 204, 0.8), 0 0 25px rgba(0, 255, 204, 0.5);
         }
-        /* ترتيب الروابط في دائرة */
+        /* ترتيب الأزرار في دائرة */
         .circle-map a:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
         .circle-map a:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); }
         .circle-map a:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); }
@@ -202,9 +209,9 @@
                 font-size: 1.5em;
             }
             .circle-map a {
-                width: 60px;
-                padding: 8px;
-                font-size: 0.9em;
+                width: 50px;
+                height: 50px;
+                font-size: 1em;
             }
         }
     </style>
@@ -230,10 +237,10 @@
         <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">15</span> ثانية.</p>
         <div class="circle-map">
             <div class="countdown" id="countdown">15</div>
-            <a href="https://eslamlinux.github.io/" data-lang="home">الرئيسية</a>
-            <a href="https://eslamlinux.github.io/blog.html" data-lang="blog">مدونتي</a>
-            <a href="https://eslamlinux.github.io/videos.html" data-lang="videos">فيديوهاتي</a>
-            <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact">اتصل بي</a>
+            <a href="https://eslamlinux.github.io/" title="الرئيسية"><i class="fas fa-home"></i></a>
+            <a href="https://eslamlinux.github.io/blog.html" title="مدونتي"><i class="fas fa-blog"></i></a>
+            <a href="https://eslamlinux.github.io/videos.html" title="فيديوهاتي"><i class="fab fa-youtube"></i></a>
+            <a href="https://eslamlinux.github.io/contact-form.html" title="اتصل بي"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 
