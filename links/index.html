@@ -114,9 +114,12 @@
             height: 450px;
             margin: 20px auto;
             animation: rotateCircle 20s linear infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+            transition: box-shadow 0.5s ease;
         }
         .circle-map:hover {
             animation-play-state: paused;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
         }
         .circle-map::before {
             content: '';
@@ -395,9 +398,8 @@
             timeLeft--;
             countdownElement.textContent = timeLeft;
             countdownTextElement.textContent = timeLeft;
-            // تغيير اللون تدريجيًا من الأخضر إلى الأحمر
-            const redValue = Math.min(255, (15 - timeLeft) * 17); // زيادة الأحمر
-            const greenValue = Math.max(0, 255 - (15 - timeLeft) * 17); // تقليل الأخضر
+            const redValue = Math.min(255, (15 - timeLeft) * 17);
+            const greenValue = Math.max(0, 255 - (15 - timeLeft) * 17);
             countdownElement.style.color = `rgb(${redValue}, ${greenValue}, 153)`;
             countdownElement.style.background = `rgba(${redValue}, ${greenValue}, 153, 0.2)`;
             if (timeLeft <= 0) {
@@ -405,15 +407,6 @@
                 window.location.href = "https://eslamlinux.github.io/";
             }
         }, 1000);
-
-        // تشغيل صوت عند التمرير (اختياري)
-        const hoverSound = new Audio('hover-sound.mp3'); // أضف ملف صوت هنا
-        document.querySelectorAll('.circle-map a').forEach(button => {
-            button.addEventListener('mouseover', () => {
-                hoverSound.currentTime = 0;
-                hoverSound.play();
-            });
-        });
 
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "ar";
