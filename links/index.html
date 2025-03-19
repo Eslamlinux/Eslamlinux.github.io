@@ -407,13 +407,13 @@
         }, 1000);
 
         // تشغيل صوت عند التمرير (اختياري)
-        // const hoverSound = new Audio('path/to/hover-sound.mp3'); // أضف ملف صوت هنا
-        // document.querySelectorAll('.circle-map a').forEach(button => {
-        //     button.addEventListener('mouseover', () => {
-        //         hoverSound.currentTime = 0;
-        //         hoverSound.play();
-        //     });
-        // });
+        const hoverSound = new Audio('hover-sound.mp3'); // أضف ملف صوت هنا
+        document.querySelectorAll('.circle-map a').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                hoverSound.currentTime = 0;
+                hoverSound.play();
+            });
+        });
 
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "ar";
