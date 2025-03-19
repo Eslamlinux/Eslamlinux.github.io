@@ -54,7 +54,6 @@
         }
         nav a i {
             font-size: 1.1em;
-            margin-right: 8px; /* مسافة بين الأيقونة والنص */
         }
         nav a:hover {
             color: #fff;
@@ -80,10 +79,10 @@
             height: 16px;
         }
         .container {
-            max-width: 1100px;
+            max-width: 1100px; /* زيادة العرض */
             margin: 80px auto 40px auto;
             background: rgba(43, 43, 43, 0.6);
-            padding: 40px;
+            padding: 40px; /* زيادة التبطيط الداخلي */
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
             text-align: center;
@@ -91,7 +90,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden;
+            overflow: hidden; /* لمنع ظهور إطار مربع */
         }
         h1 {
             color: #00cc99;
@@ -103,7 +102,6 @@
         }
         h1 i {
             font-size: 1.2em;
-            margin-right: 10px;
         }
         p {
             color: #ccc;
@@ -116,8 +114,8 @@
             width: 450px;
             height: 450px;
             margin: 20px auto;
-            animation: rotateCircle 20s linear infinite;
-            box-shadow: none;
+            animation: rotateCircle 20s linear infinite; /* الدوران ينطبق على الدائرة الخارجية فقط */
+            box-shadow: none; /* إزالة الظل لمنع ظهور المربع */
             border: none;
             background: transparent;
         }
@@ -161,7 +159,7 @@
             font-size: 2.5em;
             font-weight: bold;
             box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: pulse 1.5s ease-in-out infinite; /* الاحتفاظ بتأثير النبض فقط */
             transition: color 1s ease, background 1s ease;
         }
         .circle-map a {
@@ -196,6 +194,7 @@
             animation: ripple 0.5s ease-out;
             z-index: -1;
         }
+        /* توزيع 9 أزرار بزوايا متساوية (360° ÷ 9 = 40°) مع تقليل نصف القطر */
         .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -170px) rotate(0deg); }
         .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -170px) rotate(-40deg); }
         .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -170px) rotate(-80deg); }
@@ -205,6 +204,7 @@
         .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -170px) rotate(-240deg); }
         .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -170px) rotate(-280deg); }
         .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -170px) rotate(-320deg); }
+        /* تأثيرات الرسوم المتحركة */
         @keyframes rotateCircle {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -295,17 +295,17 @@
 </head>
 <body dir="rtl">
     <nav>
-        <a href="https://eslamlinux.github.io/" data-lang="home" title="الرئيسية"><i class="fas fa-home"></i> الرئيسية</a>
-        <a href="https://eslamlinux.github.io/#about" data-lang="about" title="نبذة عني"><i class="fas fa-user"></i> نبذة عني</a>
-        <a href="https://eslamlinux.github.io/#projects" data-lang="projects" title="مشاريعي"><i class="fas fa-tools"></i> مشاريعي</a>
-        <a href="https://eslamlinux.github.io/blog.html" data-lang="blog" title="مدونتي"><i class="fas fa-blog"></i> مدونتي</a>
-        <a href="https://eslamlinux.github.io/videos.html" data-lang="videos" title="فيديوهاتي"><i class="fab fa-youtube"></i> فيديوهاتي</a>
-        <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact" title="اتصل بي"><i class="fas fa-envelope"></i> اتصل بي</a>
-        <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter" title="تويتر"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github" title="جيت هب"><i class="fab fa-github"></i></a>
-        <button class="language-toggle" onclick="toggleLanguage()" title="تبديل اللغة">
-            <span class="flag-icon flag-icon-eg"></span>
+        <a href="https://eslamlinux.github.io/" data-lang="home"><i class="fas fa-home"></i> الرئيسية</a>
+        <a href="https://eslamlinux.github.io/#about" data-lang="about"><i class="fas fa-user"></i> نبذة عني</a>
+        <a href="https://eslamlinux.github.io/#projects" data-lang="projects"><i class="fas fa-tools"></i> مشاريعي</a>
+        <a href="https://eslamlinux.github.io/blog.html" data-lang="blog"><i class="fas fa-blog"></i> مدونتي</a>
+        <a href="https://eslamlinux.github.io/videos.html" data-lang="videos"><i class="fab fa-youtube"></i> فيديوهاتي</a>
+        <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact"><i class="fas fa-envelope"></i> اتصل بي</a>
+        <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github"><i class="fab fa-github"></i></a>
+        <button class="language-toggle" onclick="toggleLanguage()">
+            English <span class="flag-icon flag-icon-us"></span>
         </button>
     </nav>
 
@@ -320,9 +320,9 @@
             <a href="https://eslamlinux.github.io/blog.html" data-lang="blog" title="مدونتي"><i class="fas fa-blog"></i></a>
             <a href="https://eslamlinux.github.io/videos.html" data-lang="videos" title="فيديوهاتي"><i class="fab fa-youtube"></i></a>
             <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact" title="اتصل بي"><i class="fas fa-envelope"></i></a>
-            <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter" title="تويتر"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github" title="جيت هب"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/EslamLinux" target="_blank""><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Eslamlinux" target="_blank" "><i class="fab fa-github"></i></a>
         </div>
     </div>
 
@@ -340,9 +340,9 @@
                 "blog": "مدونتي",
                 "videos": "فيديوهاتي",
                 "contact": "اتصل بي",
-                "twitter": "تويتر",
-                "linkedin": "لينكدإن",
-                "github": "جيت هب",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
                 "not-found-title": "الصفحة غير موجودة",
                 "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id=\"countdown-text\">30</span> ثانية.",
                 "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
@@ -355,9 +355,9 @@
                 "blog": "My Blog",
                 "videos": "My Videos",
                 "contact": "Contact Me",
-                "twitter": "Twitter",
-                "linkedin": "LinkedIn",
-                "github": "GitHub",
+                "twitter": "",
+                "linkedin": "",
+                "github": "",
                 "not-found-title": "Page Not Found",
                 "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in <span id=\"countdown-text\">30</span> seconds.",
                 "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
@@ -375,6 +375,8 @@
                 if (element.tagName === "A" && element.hasAttribute("title")) {
                     element.setAttribute("title", text);
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i>`;
+                } else if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
                     element.innerHTML = text.replace("30", `<span id="countdown-text">${document.getElementById("countdown").textContent}</span>`);
                 } else {
@@ -384,11 +386,12 @@
 
             document.getElementById("page-title").textContent = translations[currentLang]["page-title"];
             document.querySelector(".language-toggle").innerHTML = currentLang === "ar"
-                ? `<span class="flag-icon flag-icon-us"></span>`
-                : `<span class="flag-icon flag-icon-eg"></span>`;
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
             localStorage.setItem("language", currentLang);
         }
 
+        // عداد تنازلي مع تغيير اللون
         let timeLeft = 30;
         const countdownElement = document.getElementById("countdown");
         const countdownTextElement = document.getElementById("countdown-text");
@@ -417,6 +420,8 @@
                 if (element.tagName === "A" && element.hasAttribute("title")) {
                     element.setAttribute("title", text);
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i>`;
+                } else if (element.querySelector("i")) {
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
                     element.innerHTML = text.replace("30", `<span id="countdown-text">30</span>`);
                 } else {
@@ -426,8 +431,8 @@
 
             document.getElementById("page-title").textContent = translations[savedLang]["page-title"];
             document.querySelector(".language-toggle").innerHTML = savedLang === "ar"
-                ? `<span class="flag-icon flag-icon-us"></span>`
-                : `<span class="flag-icon flag-icon-eg"></span>`;
+                ? `English <span class="flag-icon flag-icon-us"></span>`
+                : `العربية <span class="flag-icon flag-icon-eg"></span>`;
         };
     </script>
 </body>
