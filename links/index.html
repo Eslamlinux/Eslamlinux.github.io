@@ -192,17 +192,18 @@
             background: rgba(0, 255, 204, 0.3);
             border-radius: 50%;
             animation: ripple 0.5s ease-out;
+            z-index: -1;
         }
-        /* توزيع 9 أزرار بزوايا متساوية (360° ÷ 9 = 40°) */
-        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -200px) rotate(0deg); }
-        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -200px) rotate(-40deg); }
-        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -200px) rotate(-80deg); }
-        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -200px) rotate(-120deg); }
-        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -200px) rotate(-160deg); }
-        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -200px) rotate(-200deg); }
-        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -200px) rotate(-240deg); }
-        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -200px) rotate(-280deg); }
-        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -200px) rotate(-320deg); }
+        /* توزيع 9 أزرار بزوايا متساوية (360° ÷ 9 = 40°) مع تقليل نصف القطر */
+        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -180px) rotate(0deg); }
+        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -180px) rotate(-40deg); }
+        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -180px) rotate(-80deg); }
+        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -180px) rotate(-120deg); }
+        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -180px) rotate(-160deg); }
+        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -180px) rotate(-200deg); }
+        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -180px) rotate(-240deg); }
+        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -180px) rotate(-280deg); }
+        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -180px) rotate(-320deg); }
         /* تأثيرات الرسوم المتحركة */
         @keyframes rotateCircle {
             from { transform: rotate(0deg); }
@@ -280,15 +281,15 @@
                 height: 50px;
                 font-size: 1.2em;
             }
-            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -130px) rotate(0deg); }
-            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -130px) rotate(-40deg); }
-            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -130px) rotate(-80deg); }
-            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -130px) rotate(-120deg); }
-            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -130px) rotate(-160deg); }
-            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -130px) rotate(-200deg); }
-            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -130px) rotate(-240deg); }
-            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -130px) rotate(-280deg); }
-            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -130px) rotate(-320deg); }
+            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -120px) rotate(0deg); }
+            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -120px) rotate(-40deg); }
+            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -120px) rotate(-80deg); }
+            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -120px) rotate(-120deg); }
+            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -120px) rotate(-160deg); }
+            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -120px) rotate(-200deg); }
+            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -120px) rotate(-240deg); }
+            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -120px) rotate(-280deg); }
+            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -120px) rotate(-320deg); }
         }
     </style>
 </head>
@@ -408,6 +409,27 @@
             }
         }, 1000);
 
+        // إضافة تأثير التموج عند النقر باستخدام JavaScript
+        document.querySelectorAll('.circle-map a').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.width = ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                this.appendChild(ripple);
+
+                ripple.addEventListener('animationend', () => {
+                    ripple.remove();
+                });
+            });
+        });
+
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "ar";
             document.documentElement.setAttribute("lang", savedLang);
@@ -434,5 +456,18 @@
                 : `العربية <span class="flag-icon flag-icon-eg"></span>`;
         };
     </script>
+    <style>
+        .ripple {
+            position: absolute;
+            background: rgba(0, 255, 204, 0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleEffect 0.5s ease-out;
+            pointer-events: none;
+        }
+        @keyframes rippleEffect {
+            to { transform: scale(2); opacity: 0; }
+        }
+    </style>
 </body>
 </html>
