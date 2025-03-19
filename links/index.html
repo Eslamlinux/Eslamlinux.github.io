@@ -79,10 +79,10 @@
             height: 16px;
         }
         .container {
-            max-width: 1000px; /* زيادة العرض */
+            max-width: 1100px; /* زيادة العرض */
             margin: 80px auto 40px auto;
             background: rgba(43, 43, 43, 0.6);
-            padding: 30px; /* زيادة التبطيط الداخلي */
+            padding: 40px; /* زيادة التبطيط الداخلي */
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
             text-align: center;
@@ -90,7 +90,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            overflow: hidden; /* لمنع ظهور أي إطار مربع */
+            overflow: hidden; /* لمنع ظهور إطار مربع */
         }
         h1 {
             color: #00cc99;
@@ -114,15 +114,13 @@
             width: 450px;
             height: 450px;
             margin: 20px auto;
-            animation: rotateCircle 20s linear infinite;
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-            transition: box-shadow 0.5s ease;
-            border: none; /* إزالة أي حدود */
-            background: transparent; /* إزالة خلفية غير مرغوب فيها */
+            animation: rotateCircle 20s linear infinite; /* الدوران ينطبق على الدائرة الخارجية فقط */
+            box-shadow: none; /* إزالة الظل لمنع ظهور المربع */
+            border: none;
+            background: transparent;
         }
         .circle-map:hover {
             animation-play-state: paused;
-            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
         }
         .circle-map::before {
             content: '';
@@ -161,7 +159,7 @@
             font-size: 2.5em;
             font-weight: bold;
             box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-            animation: pulse 1.5s ease-in-out infinite;
+            animation: pulse 1.5s ease-in-out infinite; /* الاحتفاظ بتأثير النبض فقط */
             transition: color 1s ease, background 1s ease;
         }
         .circle-map a {
@@ -196,15 +194,17 @@
             animation: ripple 0.5s ease-out;
             z-index: -1;
         }
-        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -180px) rotate(0deg); }
-        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -180px) rotate(-40deg); }
-        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -180px) rotate(-80deg); }
-        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -180px) rotate(-120deg); }
-        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -180px) rotate(-160deg); }
-        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -180px) rotate(-200deg); }
-        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -180px) rotate(-240deg); }
-        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -180px) rotate(-280deg); }
-        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -180px) rotate(-320deg); }
+        /* توزيع 9 أزرار بزوايا متساوية (360° ÷ 9 = 40°) مع تقليل نصف القطر */
+        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -170px) rotate(0deg); }
+        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -170px) rotate(-40deg); }
+        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -170px) rotate(-80deg); }
+        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -170px) rotate(-120deg); }
+        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -170px) rotate(-160deg); }
+        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -170px) rotate(-200deg); }
+        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -170px) rotate(-240deg); }
+        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -170px) rotate(-280deg); }
+        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -170px) rotate(-320deg); }
+        /* تأثيرات الرسوم المتحركة */
         @keyframes rotateCircle {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -241,7 +241,7 @@
         @media (max-width: 600px) {
             .container {
                 margin: 70px 20px 20px 20px;
-                padding: 15px;
+                padding: 20px;
             }
             h1 {
                 font-size: 1.5em;
@@ -281,15 +281,15 @@
                 height: 50px;
                 font-size: 1.2em;
             }
-            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -120px) rotate(0deg); }
-            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -120px) rotate(-40deg); }
-            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -120px) rotate(-80deg); }
-            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -120px) rotate(-120deg); }
-            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -120px) rotate(-160deg); }
-            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -120px) rotate(-200deg); }
-            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -120px) rotate(-240deg); }
-            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -120px) rotate(-280deg); }
-            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -120px) rotate(-320deg); }
+            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -110px) rotate(0deg); }
+            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -110px) rotate(-40deg); }
+            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -110px) rotate(-80deg); }
+            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -110px) rotate(-120deg); }
+            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -110px) rotate(-160deg); }
+            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -110px) rotate(-200deg); }
+            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -110px) rotate(-240deg); }
+            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -110px) rotate(-280deg); }
+            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -110px) rotate(-320deg); }
         }
     </style>
 </head>
@@ -392,14 +392,14 @@
         }
 
         // عداد تنازلي مع تغيير اللون
-        let timeLeft = 30; // زيادة الوقت إلى 30 ثانية
+        let timeLeft = 30;
         const countdownElement = document.getElementById("countdown");
         const countdownTextElement = document.getElementById("countdown-text");
         const countdownInterval = setInterval(() => {
             timeLeft--;
             countdownElement.textContent = timeLeft;
             countdownTextElement.textContent = timeLeft;
-            const redValue = Math.min(255, (30 - timeLeft) * 8.5); // تعديل النسبة لمدة 30 ثانية
+            const redValue = Math.min(255, (30 - timeLeft) * 8.5);
             const greenValue = Math.max(0, 255 - (30 - timeLeft) * 8.5);
             countdownElement.style.color = `rgb(${redValue}, ${greenValue}, 153)`;
             countdownElement.style.background = `rgba(${redValue}, ${greenValue}, 153, 0.2)`;
