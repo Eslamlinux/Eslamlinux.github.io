@@ -79,10 +79,10 @@
             height: 16px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* زيادة العرض */
             margin: 80px auto 40px auto;
             background: rgba(43, 43, 43, 0.6);
-            padding: 20px;
+            padding: 30px; /* زيادة التبطيط الداخلي */
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
             text-align: center;
@@ -90,6 +90,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            overflow: hidden; /* لمنع ظهور أي إطار مربع */
         }
         h1 {
             color: #00cc99;
@@ -116,6 +117,8 @@
             animation: rotateCircle 20s linear infinite;
             box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
             transition: box-shadow 0.5s ease;
+            border: none; /* إزالة أي حدود */
+            background: transparent; /* إزالة خلفية غير مرغوب فيها */
         }
         .circle-map:hover {
             animation-play-state: paused;
@@ -183,7 +186,6 @@
             transform: scale(1.2) translate(-50%, -50%);
             box-shadow: 0 0 20px rgba(0, 255, 204, 1), 0 0 40px rgba(0, 255, 204, 0.7);
         }
-        /* تأثير التموج عند النقر */
         .circle-map a:active::after {
             content: '';
             position: absolute;
@@ -194,7 +196,6 @@
             animation: ripple 0.5s ease-out;
             z-index: -1;
         }
-        /* توزيع 9 أزرار بزوايا متساوية (360° ÷ 9 = 40°) مع تقليل نصف القطر */
         .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -180px) rotate(0deg); }
         .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -180px) rotate(-40deg); }
         .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -180px) rotate(-80deg); }
@@ -204,7 +205,6 @@
         .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -180px) rotate(-240deg); }
         .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -180px) rotate(-280deg); }
         .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -180px) rotate(-320deg); }
-        /* تأثيرات الرسوم المتحركة */
         @keyframes rotateCircle {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -311,9 +311,9 @@
 
     <div class="container">
         <h1><i class="fas fa-exclamation-triangle"></i> <span data-lang="not-found-title">الصفحة غير موجودة</span></h1>
-        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">15</span> ثانية.</p>
+        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">30</span> ثانية.</p>
         <div class="circle-map">
-            <div class="countdown" id="countdown">15</div>
+            <div class="countdown" id="countdown">30</div>
             <a href="https://eslamlinux.github.io/" data-lang="home" title="الرئيسية"><i class="fas fa-home"></i></a>
             <a href="https://eslamlinux.github.io/#about" data-lang="about" title="نبذة عني"><i class="fas fa-user"></i></a>
             <a href="https://eslamlinux.github.io/#projects" data-lang="projects" title="مشاريعي"><i class="fas fa-tools"></i></a>
@@ -344,7 +344,7 @@
                 "linkedin": "لينكدإن",
                 "github": "جيت هب",
                 "not-found-title": "الصفحة غير موجودة",
-                "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id=\"countdown-text\">15</span> ثانية.",
+                "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id=\"countdown-text\">30</span> ثانية.",
                 "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
             },
             en: {
@@ -359,7 +359,7 @@
                 "linkedin": "LinkedIn",
                 "github": "GitHub",
                 "not-found-title": "Page Not Found",
-                "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in <span id=\"countdown-text\">15</span> seconds.",
+                "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in <span id=\"countdown-text\">30</span> seconds.",
                 "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
             }
         };
@@ -378,7 +378,7 @@
                 } else if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
-                    element.innerHTML = text.replace("15", `<span id="countdown-text">${document.getElementById("countdown").textContent}</span>`);
+                    element.innerHTML = text.replace("30", `<span id="countdown-text">${document.getElementById("countdown").textContent}</span>`);
                 } else {
                     element.innerHTML = text;
                 }
@@ -392,15 +392,15 @@
         }
 
         // عداد تنازلي مع تغيير اللون
-        let timeLeft = 15;
+        let timeLeft = 30; // زيادة الوقت إلى 30 ثانية
         const countdownElement = document.getElementById("countdown");
         const countdownTextElement = document.getElementById("countdown-text");
         const countdownInterval = setInterval(() => {
             timeLeft--;
             countdownElement.textContent = timeLeft;
             countdownTextElement.textContent = timeLeft;
-            const redValue = Math.min(255, (15 - timeLeft) * 17);
-            const greenValue = Math.max(0, 255 - (15 - timeLeft) * 17);
+            const redValue = Math.min(255, (30 - timeLeft) * 8.5); // تعديل النسبة لمدة 30 ثانية
+            const greenValue = Math.max(0, 255 - (30 - timeLeft) * 8.5);
             countdownElement.style.color = `rgb(${redValue}, ${greenValue}, 153)`;
             countdownElement.style.background = `rgba(${redValue}, ${greenValue}, 153, 0.2)`;
             if (timeLeft <= 0) {
@@ -408,27 +408,6 @@
                 window.location.href = "https://eslamlinux.github.io/";
             }
         }, 1000);
-
-        // إضافة تأثير التموج عند النقر باستخدام JavaScript
-        document.querySelectorAll('.circle-map a').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const ripple = document.createElement('span');
-                ripple.classList.add('ripple');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-
-                ripple.style.width = ripple.style.height = `${size}px`;
-                ripple.style.left = `${x}px`;
-                ripple.style.top = `${y}px`;
-                this.appendChild(ripple);
-
-                ripple.addEventListener('animationend', () => {
-                    ripple.remove();
-                });
-            });
-        });
 
         window.onload = function() {
             const savedLang = localStorage.getItem("language") || "ar";
@@ -444,7 +423,7 @@
                 } else if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
-                    element.innerHTML = text.replace("15", `<span id="countdown-text">15</span>`);
+                    element.innerHTML = text.replace("30", `<span id="countdown-text">30</span>`);
                 } else {
                     element.innerHTML = text;
                 }
@@ -456,18 +435,5 @@
                 : `العربية <span class="flag-icon flag-icon-eg"></span>`;
         };
     </script>
-    <style>
-        .ripple {
-            position: absolute;
-            background: rgba(0, 255, 204, 0.3);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: rippleEffect 0.5s ease-out;
-            pointer-events: none;
-        }
-        @keyframes rippleEffect {
-            to { transform: scale(2); opacity: 0; }
-        }
-    </style>
 </body>
 </html>
