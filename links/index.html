@@ -111,8 +111,8 @@
         }
         .circle-map {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: 350px;
+            height: 350px;
             margin: 20px auto;
         }
         .countdown {
@@ -146,18 +146,25 @@
             align-items: center;
             font-size: 1.2em;
             transition: all 0.3s ease;
+            top: 50%;
+            left: 50%;
         }
         .circle-map a:hover {
             background: #fff;
             color: #00cc99;
-            transform: scale(1.2);
+            transform: scale(1.2) translate(-50%, -50%);
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.8), 0 0 25px rgba(0, 255, 204, 0.5);
         }
-        /* ترتيب الأزرار في دائرة */
-        .circle-map a:nth-child(1) { top: 0; left: 50%; transform: translateX(-50%); }
-        .circle-map a:nth-child(2) { top: 50%; right: 0; transform: translateY(-50%); }
-        .circle-map a:nth-child(3) { bottom: 0; left: 50%; transform: translateX(-50%); }
-        .circle-map a:nth-child(4) { top: 50%; left: 0; transform: translateY(-50%); }
+        /* توزيع الأزرار في دائرة كاملة (9 أزرار) */
+        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -150px) rotate(0deg); }
+        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -150px) rotate(-40deg); }
+        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -150px) rotate(-80deg); }
+        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -150px) rotate(-120deg); }
+        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -150px) rotate(-160deg); }
+        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -150px) rotate(-200deg); }
+        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -150px) rotate(-240deg); }
+        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -150px) rotate(-280deg); }
+        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -150px) rotate(-320deg); }
         footer {
             background: #2b2b2b;
             padding: 15px;
@@ -192,7 +199,7 @@
             p {
                 font-size: 1em;
             }
-            nav a {
+            nav a a {
                 margin: 0 5px;
                 font-size: 0.9em;
             }
@@ -200,8 +207,8 @@
                 font-size: 1em;
             }
             .circle-map {
-                width: 200px;
-                height: 200px;
+                width: 250px;
+                height: 250px;
             }
             .countdown {
                 width: 70px;
@@ -213,6 +220,15 @@
                 height: 50px;
                 font-size: 1em;
             }
+            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -100px) rotate(0deg); }
+            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -100px) rotate(-40deg); }
+            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -100px) rotate(-80deg); }
+            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -100px) rotate(-120deg); }
+            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -100px) rotate(-160deg); }
+            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -100px) rotate(-200deg); }
+            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -100px) rotate(-240deg); }
+            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -100px) rotate(-280deg); }
+            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -100px) rotate(-320deg); }
         }
     </style>
 </head>
@@ -238,9 +254,14 @@
         <div class="circle-map">
             <div class="countdown" id="countdown">15</div>
             <a href="https://eslamlinux.github.io/" title="الرئيسية"><i class="fas fa-home"></i></a>
+            <a href="https://eslamlinux.github.io/#about" title="نبذة عني"><i class="fas fa-user"></i></a>
+            <a href="https://eslamlinux.github.io/#projects" title="مشاريعي"><i class="fas fa-tools"></i></a>
             <a href="https://eslamlinux.github.io/blog.html" title="مدونتي"><i class="fas fa-blog"></i></a>
             <a href="https://eslamlinux.github.io/videos.html" title="فيديوهاتي"><i class="fab fa-youtube"></i></a>
             <a href="https://eslamlinux.github.io/contact-form.html" title="اتصل بي"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/EslamLinux" target="_blank" title="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Eslamlinux" target="_blank" title="جيت هب"><i class="fab fa-github"></i></a>
         </div>
     </div>
 
