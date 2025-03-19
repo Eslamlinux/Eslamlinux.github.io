@@ -79,13 +79,12 @@
             height: 16px;
         }
         .container {
-            max-width: 900px;
+            max-width: 900px; /* الحفاظ على الحجم الطبيعي */
             margin: 80px auto 40px auto;
             background: rgba(43, 43, 43, 0.6);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
-            transition: margin 0.3s ease;
             text-align: center;
             position: relative;
             display: flex;
@@ -111,33 +110,36 @@
         }
         .circle-map {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 450px; /* تكبير الدائرة */
+            height: 450px;
             margin: 20px auto;
-            animation: rotateCircle 20s linear infinite; /* دوران بطيء مستمر */
+            animation: rotateCircle 20s linear infinite;
+        }
+        .circle-map:hover {
+            animation-play-state: paused; /* إيقاف الدوران عند التمرير */
         }
         .countdown {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 100px;
-            height: 100px;
+            width: 120px; /* تكبير العداد */
+            height: 120px;
             background: rgba(0, 255, 204, 0.2);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 2em;
+            font-size: 2.5em;
             color: #00cc99;
             font-weight: bold;
             box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
-            animation: pulse 1.5s ease-in-out infinite; /* تأثير نبض */
+            animation: pulse 1.5s ease-in-out infinite;
         }
         .circle-map a {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 70px; /* تكبير الأزرار */
+            height: 70px;
             background: #00cc99;
             color: #fff;
             text-decoration: none;
@@ -145,7 +147,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2em;
+            font-size: 1.5em;
             transition: all 0.3s ease;
             top: 50%;
             left: 50%;
@@ -156,16 +158,16 @@
             transform: scale(1.2) translate(-50%, -50%);
             box-shadow: 0 0 20px rgba(0, 255, 204, 1), 0 0 40px rgba(0, 255, 204, 0.7);
         }
-        /* توزيع الأزرار في دائرة كاملة (9 أزرار بزاوية 40 درجة) */
-        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -150px) rotate(0deg); }
-        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -150px) rotate(-40deg); }
-        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -150px) rotate(-80deg); }
-        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -150px) rotate(-120deg); }
-        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -150px) rotate(-160deg); }
-        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -150px) rotate(-200deg); }
-        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -150px) rotate(-240deg); }
-        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -150px) rotate(-280deg); }
-        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -150px) rotate(-320deg); }
+        /* توزيع 9 أزرار بزوايا متساوية */
+        .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -200px) rotate(0deg); }
+        .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -200px) rotate(-40deg); }
+        .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -200px) rotate(-80deg); }
+        .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -200px) rotate(-120deg); }
+        .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -200px) rotate(-160deg); }
+        .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -200px) rotate(-200deg); }
+        .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -200px) rotate(-240deg); }
+        .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -200px) rotate(-280deg); }
+        .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -200px) rotate(-320deg); }
         /* تأثيرات الرسوم المتحركة */
         @keyframes rotateCircle {
             from { transform: rotate(0deg); }
@@ -218,28 +220,28 @@
                 font-size: 1em;
             }
             .circle-map {
-                width: 250px;
-                height: 250px;
+                width: 300px;
+                height: 300px;
             }
             .countdown {
-                width: 70px;
-                height: 70px;
-                font-size: 1.5em;
+                width: 80px;
+                height: 80px;
+                font-size: 1.8em;
             }
             .circle-map a {
                 width: 50px;
                 height: 50px;
-                font-size: 1em;
+                font-size: 1.2em;
             }
-            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -100px) rotate(0deg); }
-            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -100px) rotate(-40deg); }
-            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -100px) rotate(-80deg); }
-            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -100px) rotate(-120deg); }
-            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -100px) rotate(-160deg); }
-            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -100px) rotate(-200deg); }
-            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -100px) rotate(-240deg); }
-            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -100px) rotate(-280deg); }
-            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -100px) rotate(-320deg); }
+            .circle-map a:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translate(0, -130px) rotate(0deg); }
+            .circle-map a:nth-child(2) { transform: translate(-50%, -50%) rotate(40deg) translate(0, -130px) rotate(-40deg); }
+            .circle-map a:nth-child(3) { transform: translate(-50%, -50%) rotate(80deg) translate(0, -130px) rotate(-80deg); }
+            .circle-map a:nth-child(4) { transform: translate(-50%, -50%) rotate(120deg) translate(0, -130px) rotate(-120deg); }
+            .circle-map a:nth-child(5) { transform: translate(-50%, -50%) rotate(160deg) translate(0, -130px) rotate(-160deg); }
+            .circle-map a:nth-child(6) { transform: translate(-50%, -50%) rotate(200deg) translate(0, -130px) rotate(-200deg); }
+            .circle-map a:nth-child(7) { transform: translate(-50%, -50%) rotate(240deg) translate(0, -130px) rotate(-240deg); }
+            .circle-map a:nth-child(8) { transform: translate(-50%, -50%) rotate(280deg) translate(0, -130px) rotate(-280deg); }
+            .circle-map a:nth-child(9) { transform: translate(-50%, -50%) rotate(320deg) translate(0, -130px) rotate(-320deg); }
         }
     </style>
 </head>
@@ -261,18 +263,18 @@
 
     <div class="container">
         <h1><i class="fas fa-exclamation-triangle"></i> <span data-lang="not-found-title">الصفحة غير موجودة</span></h1>
-        <p data-lang gins="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">15</span> ثانية.</p>
+        <p data-lang="not-found-text">هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id="countdown-text">15</span> ثانية.</p>
         <div class="circle-map">
             <div class="countdown" id="countdown">15</div>
-            <a href="https://eslamlinux.github.io/" title="الرئيسية"><i class="fas fa-home"></i></a>
-            <a href="https://eslamlinux.github.io/#about" title="نبذة عني"><i class="fas fa-user"></i></a>
-            <a href="https://eslamlinux.github.io/#projects" title="مشاريعي"><i class="fas fa-tools"></i></a>
-            <a href="https://eslamlinux.github.io/blog.html" title="مدونتي"><i class="fas fa-blog"></i></a>
-            <a href="https://eslamlinux.github.io/videos.html" title="فيديوهاتي"><i class="fab fa-youtube"></i></a>
-            <a href="https://eslamlinux.github.io/contact-form.html" title="اتصل بي"><i class="fas fa-envelope"></i></a>
-            <a href="https://twitter.com/EslamLinux" target="_blank" title="تويتر"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Eslamlinux" target="_blank" title="جيت هب"><i class="fab fa-github"></i></a>
+            <a href="https://eslamlinux.github.io/" data-lang="home" title="الرئيسية"><i class="fas fa-home"></i></a>
+            <a href="https://eslamlinux.github.io/#about" data-lang="about" title="نبذة عني"><i class="fas fa-user"></i></a>
+            <a href="https://eslamlinux.github.io/#projects" data-lang="projects" title="مشاريعي"><i class="fas fa-tools"></i></a>
+            <a href="https://eslamlinux.github.io/blog.html" data-lang="blog" title="مدونتي"><i class="fas fa-blog"></i></a>
+            <a href="https://eslamlinux.github.io/videos.html" data-lang="videos" title="فيديوهاتي"><i class="fab fa-youtube"></i></a>
+            <a href="https://eslamlinux.github.io/contact-form.html" data-lang="contact" title="اتصل بي"><i class="fas fa-envelope"></i></a>
+            <a href="https://twitter.com/EslamLinux" target="_blank" data-lang="twitter" title="تويتر"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/eslamlinux" target="_blank" data-lang="linkedin" title="لينكدإن"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Eslamlinux" target="_blank" data-lang="github" title="جيت هب"><i class="fab fa-github"></i></a>
         </div>
     </div>
 
@@ -290,9 +292,9 @@
                 "blog": "مدونتي",
                 "videos": "فيديوهاتي",
                 "contact": "اتصل بي",
-                "twitter": "",
-                "linkedin": "",
-                "github": "",
+                "twitter": "تويتر",
+                "linkedin": "لينكدإن",
+                "github": "جيت هب",
                 "not-found-title": "الصفحة غير موجودة",
                 "not-found-text": "هذه الصفحة لم تعد موجودة. سيتم توجيهك تلقائيًا إلى الصفحة الرئيسية خلال <span id=\"countdown-text\">15</span> ثانية.",
                 "footer": "جميع الحقوق محفوظة © 2025 EslamLinux | تصميم بواسطة <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
@@ -305,9 +307,9 @@
                 "blog": "My Blog",
                 "videos": "My Videos",
                 "contact": "Contact Me",
-                "twitter": "",
-                "linkedin": "",
-                "github": "",
+                "twitter": "Twitter",
+                "linkedin": "LinkedIn",
+                "github": "GitHub",
                 "not-found-title": "Page Not Found",
                 "not-found-text": "This page no longer exists. You will be automatically redirected to the homepage in <span id=\"countdown-text\">15</span> seconds.",
                 "footer": "All Rights Reserved © 2025 EslamLinux | Designed by <a href=\"https://twitter.com/EslamLinux\">@EslamLinux</a>"
@@ -322,7 +324,10 @@
             document.querySelectorAll("[data-lang]").forEach(element => {
                 const key = element.getAttribute("data-lang");
                 const text = translations[currentLang][key];
-                if (element.querySelector("i")) {
+                if (element.tagName === "A" && element.hasAttribute("title")) {
+                    element.setAttribute("title", text);
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i>`;
+                } else if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
                     element.innerHTML = text.replace("15", `<span id="countdown-text">${document.getElementById("countdown").textContent}</span>`);
@@ -360,7 +365,10 @@
             document.querySelectorAll("[data-lang]").forEach(element => {
                 const key = element.getAttribute("data-lang");
                 const text = translations[savedLang][key];
-                if (element.querySelector("i")) {
+                if (element.tagName === "A" && element.hasAttribute("title")) {
+                    element.setAttribute("title", text);
+                    element.innerHTML = `<i class="${element.querySelector("i").className}"></i>`;
+                } else if (element.querySelector("i")) {
                     element.innerHTML = `<i class="${element.querySelector("i").className}"></i> ${text}`;
                 } else if (element.id === "not-found-text") {
                     element.innerHTML = text.replace("15", `<span id="countdown-text">15</span>`);
